@@ -38,13 +38,13 @@ desktop: 1920x1080 60Hz; virtual: 3840x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.933912 ms
-Non platform assembly: data-11604660 (this message is harmless)
-Fallback handler could not load library D:/Projet/[Unity 5.5.0f3] Golden Gun/Test/Test_Data/Mono/data-11604660.dll
-Non platform assembly: data-1176F168 (this message is harmless)
-Fallback handler could not load library D:/Projet/[Unity 5.5.0f3] Golden Gun/Test/Test_Data/Mono/data-1176F168.dll
-Non platform assembly: data-1269F020 (this message is harmless)
-Fallback handler could not load library D:/Projet/[Unity 5.5.0f3] Golden Gun/Test/Test_Data/Mono/data-1269F020.dll
+UnloadTime: 1.059131 ms
+Non platform assembly: data-0E33D008 (this message is harmless)
+Fallback handler could not load library D:/Projet/[Unity 5.5.0f3] Golden Gun/Test/Test_Data/Mono/data-0E33D008.dll
+Non platform assembly: data-0E49CEA8 (this message is harmless)
+Fallback handler could not load library D:/Projet/[Unity 5.5.0f3] Golden Gun/Test/Test_Data/Mono/data-0E49CEA8.dll
+Non platform assembly: data-12433020 (this message is harmless)
+Fallback handler could not load library D:/Projet/[Unity 5.5.0f3] Golden Gun/Test/Test_Data/Mono/data-12433020.dll
 Fallback handler could not load library D:/Projet/[Unity 5.5.0f3] Golden Gun/Test/Test_Data/Mono/steam_api
 Fallback handler could not load library D:/Projet/[Unity 5.5.0f3] Golden Gun/Test/Test_Data/Mono/.\steam_api
 Fallback handler could not load library D:/Projet/[Unity 5.5.0f3] Golden Gun/Test/Test_Data/Mono/steam_api
@@ -61,10 +61,13 @@ Rewired: Searching for compatible XInput library...
 Rewired: Found Xinput1_3.dll.
 Platform assembly: D:\Projet\[Unity 5.5.0f3] Golden Gun\Test\Test_Data\Managed\System.Xml.dll (this message is harmless)
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 1054 -> priority: 1 
-  Thread -> id: 1dc0 -> priority: 1 
-NullReferenceException: Object reference not set to an instance of an object
-  at Interactions.Update () [0x00000] in <filename unknown>:0 
+  Thread -> id: 22f4 -> priority: 1 
+  Thread -> id: 1170 -> priority: 1 
+RPC Function RpcDesactivate called on client.
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+RPC Function RpcDesactivate called on client.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 

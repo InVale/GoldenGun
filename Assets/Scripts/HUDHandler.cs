@@ -18,7 +18,7 @@ public class HUDHandler : MonoBehaviour {
 
 	public void ScoreData (int player, int opponent) {
 		PlayerScoreText.text = player.ToString();
-		OpponentScoreText.text = player.ToString();
+		OpponentScoreText.text = opponent.ToString();
 	}
 
 	public void Timer (float timer) {

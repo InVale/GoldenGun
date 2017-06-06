@@ -26,8 +26,6 @@ public class MasterManager : NetworkBehaviour {
 
 		if (isServer) {
 
-			Debug.Log (Network.connections.Length + 1);
-
 			if (Network.connections.Length + 1 != Players.Length) {
 				GetPlayers();
 			}

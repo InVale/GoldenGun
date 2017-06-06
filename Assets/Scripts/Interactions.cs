@@ -19,39 +19,48 @@ public class Interactions : NetworkBehaviour {
 
 	public float Timer = -1;
 
+	LineRenderer _line;
 	Player _player;
 	MasterManager _master;
 
 	void Start()
 	{
+		_master = GameObject.FindGameObjectWithTag("Master").GetComponent<MasterManager>();
+		_line = GetComponent<LineRenderer>();
+
 		if (isLocalPlayer) {
 			_player = ReInput.players.GetPlayer(0);
-			_master = GameObject.FindGameObjectWithTag("Master").GetComponent<MasterManager>();
 		}
 	}
 
 	// Update is called once per frame
 	void Update () {
 		if (isLocalPlayer) {
-
 			if (_canFireRocket) {
-
 				if (_player.GetButtonDown("Fire")) {
 					CmdFire(RocketSpawn.position, RocketSpawn.rotation);
-					_canFireRocket = false;
-					Gun.SetActive(false);
-					Timer = -1;
+					Desactivate();
 				}
 				else if (Timer > 0) {
 					Timer -= Time.deltaTime;
 					if (Timer <= 0) {
-						Timer = -1;
-						_canFireRocket = false;
-						Gun.SetActive(false);
 						CmdSwapGun();
 					}
 				}
 			}
+		}
+
+		if (_canFireRocket) {
+
+			_line.enabled = true;
+
+			RaycastHit hit;
+			Physics.Raycast(RocketSpawn.position, RocketSpawn.forward, out hit);
+			Vector3[] laser = new Vector3[2] {RocketSpawn.position, hit.point};
+			_line.SetPositions(laser);
+		}
+		else {
+			_line.enabled = false;
 		}
 	}
 
