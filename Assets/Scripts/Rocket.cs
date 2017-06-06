@@ -17,7 +17,7 @@ public class Rocket : NetworkBehaviour {
 					ID.GetComponent<PlayerData>().PlayerScore++;
 					collider.gameObject.GetComponent<CCC>().TakeHit();
 				}
-
+					
 				Master.SwapGun(ID);
 			}
 

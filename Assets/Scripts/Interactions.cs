@@ -11,6 +11,7 @@ public class Interactions : NetworkBehaviour {
 
 	public GameObject RocketPrefab;
 	public Transform RocketSpawn;
+	public GameObject Gun;
 
 	public float TimeBeforeSwitch = 10;
 	public float TravelSpeed = 10;
@@ -18,7 +19,6 @@ public class Interactions : NetworkBehaviour {
 
 	public float Timer = -1;
 
-	GameObject Gun;
 	Player _player;
 	MasterManager _master;
 
@@ -77,7 +77,7 @@ public class Interactions : NetworkBehaviour {
 	public void Activate () {
 		_canFireRocket = true;
 		Gun.SetActive(true);
-		RpcDesactivate();
+		RpcActivate();
 	}
 
 	[ClientRpc]

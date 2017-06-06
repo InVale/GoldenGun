@@ -23,8 +23,12 @@ public class MasterManager : NetworkBehaviour {
 	}
 
 	public void SwapGun (GameObject PlayerID) {
+
 		if (isServer) {
-			if (Network.connections.Length != Players.Length) {
+
+			Debug.Log (Network.connections.Length + 1);
+
+			if (Network.connections.Length + 1 != Players.Length) {
 				GetPlayers();
 			}
 
