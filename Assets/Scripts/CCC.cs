@@ -244,7 +244,28 @@ public class CCC : NetworkBehaviour
 					_velocityGravity = JumpMinimumForce;
 					_jumpTime = JumpButtonPressDuration;
 				}
+				//double jump
 				else if (_canJump) {
+
+					Vector3 vertical = PlayerRotY.localRotation * Vector3.forward * _player.GetAxisRaw ("Move Vertical");
+					Vector3 horizontal = PlayerRotY.localRotation * Vector3.right * _player.GetAxisRaw ("Move Horizontal");
+
+					float bufferHigherSpeed; 
+					if (_player.GetAxisRaw ("Move Vertical") >= 0) {
+						_speed = vertical * FrontSpeed + horizontal * SideSpeed;
+						bufferHigherSpeed = FrontSpeed;
+					}
+					else {
+						_speed = vertical * BackSpeed + horizontal * SideSpeed;
+						bufferHigherSpeed = BackSpeed;
+					}
+
+					if (_speed.magnitude > bufferHigherSpeed) {
+						_speed = _speed.normalized * bufferHigherSpeed;
+					}
+
+					_velocity2D = _speed;
+
 					_jumpBuffer = -1;
 					_isJumping = true;
 					_velocityGravity = DoubleJumpForce;

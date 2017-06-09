@@ -22,11 +22,13 @@ public class Interactions : NetworkBehaviour {
 	LineRenderer _line;
 	Player _player;
 	MasterManager _master;
+	PlayerData _data;
 
 	void Start()
 	{
 		_master = GameObject.FindGameObjectWithTag("Master").GetComponent<MasterManager>();
 		_line = GetComponent<LineRenderer>();
+		_data = GetComponent <PlayerData> ();
 
 		if (isLocalPlayer) {
 			_player = ReInput.players.GetPlayer(0);
@@ -39,7 +41,7 @@ public class Interactions : NetworkBehaviour {
 			if (_canFireRocket) {
 				if (_player.GetButtonDown("Fire")) {
 					CmdFire(RocketSpawn.position, RocketSpawn.rotation);
-					Desactivate();
+					CmdDesactivate();
 				}
 				else if (Timer > 0) {
 					Timer -= Time.deltaTime;
@@ -47,6 +49,11 @@ public class Interactions : NetworkBehaviour {
 						CmdSwapGun();
 					}
 				}
+			}
+		}
+		else if (isServer) {
+			if (_canFireRocket) {
+				_master.Timer = Timer;
 			}
 		}
 
@@ -67,6 +74,11 @@ public class Interactions : NetworkBehaviour {
 	[Command]
 	void CmdSwapGun () {
 		_master.SwapGun(gameObject);
+	}
+
+	[Command]
+	void CmdDesactivate() {
+		Desactivate ();
 	}
 
 	public void Desactivate () {
@@ -94,6 +106,10 @@ public class Interactions : NetworkBehaviour {
 		_canFireRocket = true;
 		Gun.SetActive(true);
 		Timer = TimeBeforeSwitch;
+
+		if (isLocalPlayer) {
+			_data.SwapAnim ();
+		}
 	}
 
 	[Command]

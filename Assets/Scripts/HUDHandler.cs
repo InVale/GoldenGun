@@ -9,12 +9,17 @@ public class HUDHandler : MonoBehaviour {
 	public Text OpponentScoreText;
 	public Text TimerText;
 	public GameObject TimerBar;
-	public Image HurtImage;
 
+	public Image HurtImage;
 	public float HurtTime = 0.5f;
 	public float HurtTransparencyMax = 0.7f;
 
-	bool _animation = false;
+	public Image SwapImage;
+	public float SwapTime = 0.5f;
+	public float SwapTransparencyMax = 0.7f;
+
+	bool _hurtAnimation = false;
+	bool _swapAnimation = false;
 
 	public void ScoreData (int player, int opponent) {
 		PlayerScoreText.text = player.ToString();
@@ -33,8 +38,8 @@ public class HUDHandler : MonoBehaviour {
 	}
 
 	public void Hurt () {
-		if (!_animation) {
-			_animation = true;
+		if (!_hurtAnimation) {
+			_hurtAnimation = true;
 			StartCoroutine(HurtAnimation());
 		}
 	}
@@ -61,6 +66,38 @@ public class HUDHandler : MonoBehaviour {
 			HurtImage.color = _newColor;
 		}
 
-		_animation = false;
+		_hurtAnimation = false;
+	}
+
+	public void Swap () {
+		if (!_swapAnimation) {
+			_swapAnimation = true;
+			StartCoroutine(SwapAnimation());
+		}
+	}
+
+	IEnumerator SwapAnimation()
+	{
+		float value = 0;
+
+		while(value < SwapTransparencyMax)
+		{
+			yield return new WaitForFixedUpdate ();
+			value += Time.deltaTime * (1 / (SwapTime * 0.5f));
+			Color _newColor = SwapImage.color; 
+			_newColor.a = value;
+			SwapImage.color = _newColor;
+		}
+
+		while(value > 0)
+		{
+			yield return new WaitForFixedUpdate ();
+			value -= Time.deltaTime * (1 / (SwapTime * 0.5f));
+			Color _newColor = SwapImage.color; 
+			_newColor.a = value;
+			SwapImage.color = _newColor;
+		}
+
+		_swapAnimation = false;
 	}
 }

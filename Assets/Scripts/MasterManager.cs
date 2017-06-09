@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using System.Threading;
 
 public class MasterManager : NetworkBehaviour {
+
+	[SyncVar]
+	public float Timer = -1;
 
 	GameObject[] Players;
 	Interactions[] PlayerScripts;
